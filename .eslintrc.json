@@ -1,0 +1,111 @@
+{
+	"env": {
+		"browser": true,
+		"es2021": true
+	},
+	"extends": [
+		"eslint:recommended",
+		"plugin:react/recommended",
+		"plugin:@typescript-eslint/recommended",
+		"plugin:import/recommended",
+		"plugin:import/typescript",
+		"prettier"
+	],
+	"overrides": [],
+	"parser": "@typescript-eslint/parser",
+	"parserOptions": {
+		"ecmaFeatures": {
+			"jsx": true
+		},
+		"sourceType": "module",
+		"project": "./tsconfig.json",
+		"ecmaVersion": 2021
+	},
+	"plugins": ["react", "@typescript-eslint", "import"],
+	"settings": {
+		"react": {
+			"pragma": "React",
+			"version": "detect"
+		},
+		"import/resolver": {
+			"node": {
+				"extensions": [".js", ".jsx", ".ts", ".tsx"]
+			},
+			"typescript": {
+				"alwaysTryTypes": true,
+				"project": "./tsconfig.json"
+			}
+		}
+	},
+	"rules": {
+		"quotes": ["error", "single"],
+
+		"@typescript-eslint/no-unused-vars": [
+			"warn",
+			{ "argsIgnorePattern": "^_" }
+		],
+
+		"import/no-unassigned-import": ["off", { "allow": ["*/.css"] }],
+
+		"import/order": [
+			"warn",
+			{
+				"groups": [
+					"builtin",
+					"external",
+					"internal",
+					"parent",
+					"sibling",
+					"index",
+					"object",
+					"type"
+				],
+				"pathGroups": [
+					{
+						"pattern": "{react,react-dom}",
+						"group": "external",
+						"position": "before"
+					},
+					{
+						"pattern": "@mui/**",
+						"group": "external",
+						"position": "before"
+					},
+					{
+						"pattern": "react-!(dom)",
+						"group": "external",
+						"position": "before"
+					},
+					{
+						"pattern": "{axios, axios-hooks}",
+						"group": "external",
+						"position": "before"
+					},
+					{
+						"pattern": "{api}/**",
+						"group": "internal",
+						"position": "before"
+					},
+					{
+						"pattern": "/{styles}",
+						"group": "sibling",
+						"position": "after"
+					}
+				],
+				"pathGroupsExcludedImportTypes": ["react", "react-dom"],
+				"newlines-between": "always",
+				"alphabetize": {
+					"order": "asc",
+					"caseInsensitive": false
+				}
+			}
+		],
+		"sort-imports": [
+			"warn",
+			{
+				"allowSeparatedGroups": true,
+				"ignoreDeclarationSort": true
+			}
+		]
+	}
+}
