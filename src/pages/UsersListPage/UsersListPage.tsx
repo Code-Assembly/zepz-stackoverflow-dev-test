@@ -2,8 +2,25 @@ import React, { FC } from 'react';
 
 import { Box, Typography } from '@mui/material';
 
+import useAxios from 'axios-hooks';
+
+import { UsersResponseData, buildUsersRequest } from 'api/stackexchange/users';
+import { UsersListSkeleton } from 'features/userslist';
+
+import { PAGE_SIZE } from './constants';
+
 export const UsersListPage: FC = () => {
-	const content = null;
+	const [{ loading }] = useAxios<UsersResponseData>(
+		buildUsersRequest({
+			pagesize: PAGE_SIZE,
+		})
+	);
+
+	let content = null;
+
+	if (loading) {
+		content = <UsersListSkeleton listSize={PAGE_SIZE} />;
+	}
 
 	return (
 		<Box
