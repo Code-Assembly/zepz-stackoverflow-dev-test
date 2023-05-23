@@ -8,6 +8,8 @@ import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 
+import { UsersListPage } from 'pages/UsersListPage';
+
 const App: FC = () => {
 	return (
 		<>
@@ -21,6 +23,7 @@ const App: FC = () => {
 			{/* In future this would become an app shell */}
 			<Container component="main" sx={{ maxWidth: 'md' }}>
 				{/* This would likely contain routing to additional pages */}
+				<UsersListPage />
 			</Container>
 		</>
 	);
