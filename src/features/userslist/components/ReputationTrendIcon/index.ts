@@ -1,0 +1,1 @@
+export { ReputationTrendIcon } from './ReputationTrendIcon';
