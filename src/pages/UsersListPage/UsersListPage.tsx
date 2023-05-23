@@ -1,16 +1,17 @@
 import React, { FC } from 'react';
 
-import { Box, Typography } from '@mui/material';
+import { Box, Paper, Typography } from '@mui/material';
 
 import useAxios from 'axios-hooks';
 
 import { UsersResponseData, buildUsersRequest } from 'api/stackexchange/users';
 import { UsersListSkeleton } from 'features/userslist';
 
+import { ErrorAlert } from './components/ErrorAlert';
 import { PAGE_SIZE } from './constants';
 
 export const UsersListPage: FC = () => {
-	const [{ loading }] = useAxios<UsersResponseData>(
+	const [{ loading, error }] = useAxios<UsersResponseData>(
 		buildUsersRequest({
 			pagesize: PAGE_SIZE,
 		})
@@ -20,6 +21,12 @@ export const UsersListPage: FC = () => {
 
 	if (loading) {
 		content = <UsersListSkeleton listSize={PAGE_SIZE} />;
+	} else if (error) {
+		content = (
+			<Paper elevation={2} sx={{ width: '100%' }}>
+				<ErrorAlert error={error} />
+			</Paper>
+		);
 	}
 
 	return (
