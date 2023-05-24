@@ -82,6 +82,7 @@ export const UsersListToolbar: FC<UsersListToolbarProps> = ({
 			variant="elevation"
 			color="inherit"
 			sx={{ mb: 4 }}
+			data-testid="UsersListToolbar"
 		>
 			<Toolbar>
 				<TextField
@@ -99,11 +100,16 @@ export const UsersListToolbar: FC<UsersListToolbarProps> = ({
 						),
 						endAdornment:
 							search?.trim().length > 0 ? (
-								<IconButton color="error" onClick={onClearSearchName}>
+								<IconButton
+									color="error"
+									onClick={onClearSearchName}
+									data-testid="textinput-searchname-btn-clear"
+								>
 									<ClearIcon />
 								</IconButton>
 							) : null,
 					}}
+					data-testid="textinput-searchname"
 				/>
 
 				<FormControl
@@ -122,17 +128,30 @@ export const UsersListToolbar: FC<UsersListToolbarProps> = ({
 								sortOn: event.target.value as UsersSort,
 							})
 						}
+						data-testid="select-sorton"
 					>
-						<MenuItem value={UsersSort.REPUTATION}>
+						<MenuItem
+							value={UsersSort.REPUTATION}
+							data-testid={`select-option-sorton-${UsersSort.REPUTATION}`}
+						>
 							{capitalize(UsersSort.REPUTATION)}
 						</MenuItem>
-						<MenuItem value={UsersSort.NAME}>
+						<MenuItem
+							value={UsersSort.NAME}
+							data-testid={`select-option-sorton-${UsersSort.NAME}`}
+						>
 							{capitalize(UsersSort.NAME)}
 						</MenuItem>
-						<MenuItem value={UsersSort.MODIFIED}>
+						<MenuItem
+							value={UsersSort.MODIFIED}
+							data-testid={`select-option-sorton-${UsersSort.MODIFIED}`}
+						>
 							{capitalize(UsersSort.MODIFIED)}
 						</MenuItem>
-						<MenuItem value={UsersSort.CREATION}>
+						<MenuItem
+							value={UsersSort.CREATION}
+							data-testid={`select-option-sorton-${UsersSort.CREATION}`}
+						>
 							{capitalize(UsersSort.CREATION)}
 						</MenuItem>
 					</Select>
@@ -157,6 +176,7 @@ export const UsersListToolbar: FC<UsersListToolbarProps> = ({
 						key={Order.DESCENDING}
 						disabled={orderBy === Order.DESCENDING}
 						title="Order Descending"
+						data-testid="btn-orderby-descending"
 					>
 						<SortIcon />
 					</ToggleButton>
@@ -166,6 +186,7 @@ export const UsersListToolbar: FC<UsersListToolbarProps> = ({
 						key={Order.ASCENDING}
 						disabled={orderBy === Order.ASCENDING}
 						title="Order Ascending"
+						data-testid="btn-orderby-ascending"
 					>
 						<SortIcon sx={{ transform: 'rotate(180deg)' }} />
 					</ToggleButton>
@@ -181,6 +202,7 @@ export const UsersListToolbar: FC<UsersListToolbarProps> = ({
 					onClick={() =>
 						onAction?.({ type: UsersListToolbarActions.PREVIOUS_PAGE })
 					}
+					data-testid="btn-page-previous"
 				>
 					Previous
 				</Button>
@@ -193,6 +215,7 @@ export const UsersListToolbar: FC<UsersListToolbarProps> = ({
 					onClick={() =>
 						onAction?.({ type: UsersListToolbarActions.NEXT_PAGE })
 					}
+					data-testid="btn-page-next"
 				>
 					Next
 				</Button>
